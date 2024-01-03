@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "yrMfY+cH/ezIhLY6gJqDHElHyVa0YHM5W+BP1cUhOz8d+bvhQEKNWj1z0YNdTBHEj7vLJbjAzFsXpTyMsvFBQw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Данил\\source\\repos\\CryptoNote\\CryptoNote.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.NETCore.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.WindowsDesktop.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.AspNetCore.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.NETCore.App.Crossgen2.win-x64"
+    }
+  ]
+}

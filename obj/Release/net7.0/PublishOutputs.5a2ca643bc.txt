@@ -1,0 +1,6 @@
+C:\Releases\CryptoNote\CryptoNote.exe
+C:\Releases\CryptoNote\CryptoNote.dll
+C:\Releases\CryptoNote\CryptoNote.deps.json
+C:\Releases\CryptoNote\CryptoNote.runtimeconfig.json
+C:\Releases\CryptoNote\CryptoLib.dll
+C:\Releases\CryptoNote\CryptoLib.pdb

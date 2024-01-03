@@ -1,0 +1,16 @@
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoNote.exe
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoNote.deps.json
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoNote.runtimeconfig.json
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoNote.dll
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoLib.dll
+C:\Users\Данил\source\repos\CryptoNote\bin\Release\net7.0\CryptoLib.pdb
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.csproj.AssemblyReference.cache
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.AssemblyInfoInputs.cache
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.AssemblyInfo.cs
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.csproj.CoreCompileInputs.cache
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.csproj.CopyComplete
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.dll
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\refint\CryptoNote.dll
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\CryptoNote.genruntimeconfig.cache
+C:\Users\Данил\source\repos\CryptoNote\obj\Release\net7.0\ref\CryptoNote.dll
