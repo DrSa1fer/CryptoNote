@@ -8,11 +8,6 @@ internal class Program
         var rep = new FunctionRepository();
         var handler = new InputHandler(rep);
 
-
-
-
-
-
         Console.WriteLine("Use help for information");
 
         while (true)
