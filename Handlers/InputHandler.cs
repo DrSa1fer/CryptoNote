@@ -1,15 +1,37 @@
-﻿namespace CryptoNote;
-internal class InputHandler
+﻿using CryptoNote.Functions;
+
+namespace CryptoNote.Handlers
 {
-    public static string[] Arguments { get; private set; } = Array.Empty<string>();
-    private readonly FunctionRepository _rep = new();
-
-    public void Update(string line)
+    internal class InputHandler
     {
-        var arr = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        if (arr.Length == 0) return;
-        Arguments = arr.Length > 1 ? arr[1..] : Array.Empty<string>();
+        private readonly FunctionRepository _rep;
 
-        if (_rep.TryGetFunction(arr[0], out IFunction? func)) func?.Invoke();           
+        public InputHandler(FunctionRepository rep)
+        {
+            _rep = rep;
+        }
+
+        public void Update(string line)
+        {
+            var arr = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (arr.Length == 1)
+            {
+                if (_rep.TryGetFunctionWithoutArgs(arr[0], out BaseFunctionWithoutArgs? func))
+                {
+                    func?.Invoke();
+                    return;
+                }
+            }
+            if (arr.Length > 1)
+            {
+                if (_rep.TryGetFunctionWithArgs(arr[0], out BaseFunctionWithArgs? func))
+                {
+                    func?.Invoke(arr[1..]);
+                    return;
+                }
+            }
+            ErrorHandler.UnknownFunction(line);
+        }
     }
 }

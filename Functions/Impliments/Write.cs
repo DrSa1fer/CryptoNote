@@ -1,40 +1,42 @@
-﻿namespace CryptoNote;
-internal class Write : IFunction
+﻿using CryptoNote.Savers;
+
+namespace CryptoNote.Functions
 {
-    public string Name => "write";
-    public string ShortName => "w";
-    public string Description => "записывает данные в файл";
-    public string Example => "write filename";
-
-    public void Invoke()
+    internal class Write : BaseFunctionWithArgs
     {
-        var args = InputHandler.Arguments;
+        public override string Name => "write";
+        public override string ShortName => "w";
+        public override string Description => "записывает данные в файл";
+        public override string Example => $"[{Name}|{ShortName}] [filename]";
 
-        if (args.Length == 1)
+        public override void Invoke(params string[] args)
         {
-            LocalSaver.Save(args[0], FileWritingMode());            
-            return;
+            LocalSaver.Save(args[0], FileWritingMode());
         }
-        ErrorHandler.ArgumentError($"write take one argument: filename");
-    }
-    private static string[] FileWritingMode()
-    {
-        var list = new List<string>();
-        var exit = "\\save";
 
-        Console.WriteLine($">>> Start file writing. For exit write \"{exit}\"");
-        Console.WriteLine();
-        while (true)
+        private static string[] FileWritingMode()
         {
-            var input = Console.ReadLine();
-            if (input == exit)
+            Console.ForegroundColor = ConsoleColor.Blue;
+            var list = new List<string>();
+            var exit = "\\save";
+
+            Console.WriteLine($">>> Start file writing. For exit write \"{exit}\"");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine();
+            while (true)
             {
-                Console.WriteLine();
-                Console.WriteLine(">>> End file writing");
-                break; 
+                var input = Console.ReadLine();
+                if (input == exit)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(">>> End file writing");
+                    break;
+                }
+                list.Add(input!);
             }
-            list.Add(input!);
+            Console.ResetColor();
+            return list.ToArray();
         }
-        return list.ToArray();
     }
 }

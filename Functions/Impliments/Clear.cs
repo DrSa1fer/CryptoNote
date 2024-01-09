@@ -1,13 +1,16 @@
-﻿namespace CryptoNote;
-internal class Clear : IFunction
+﻿namespace CryptoNote.Functions
 {
-    public string Name => "clear";
-    public string ShortName => "c";
-    public string Description => "очищает консоль";
-    public string Example => "clear";
-
-    public void Invoke()
+    internal class Clear : BaseFunctionWithoutArgs
     {
-        Console.Clear();
+        public override string Name => "clear";
+        public override string ShortName => "c";
+        public override string Description => "очищает консоль";
+
+        public override string Example => $"[{Name}|{ShortName}]";
+
+        public override void Invoke()
+        {
+            Console.Clear();
+        }
     }
 }

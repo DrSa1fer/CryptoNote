@@ -1,32 +1,49 @@
-﻿namespace CryptoNote;
-internal class List : IFunction
+﻿using CryptoNote.Handlers;
+using CryptoNote.Savers;
+
+namespace CryptoNote.Functions
 {
-    public string Name => "list";
-    public string ShortName => "l";
-    public string Description => "выводит список файлов";
-    public string Example => "list"; 
-
-    public void Invoke()
+    internal class List : BaseFunctionWithArgs
     {
-        var files = LocalSaver.GetAllFiles();
-        if (files.Length == 0)
-        {
-            Console.WriteLine(" => Not files");
-            return;
-        }
+        public override string Name => "list";
+        public override string ShortName => "l";
+        public override string Description => "выводит список файлов";
+        public override string Example => $"[{Name}|{ShortName}] [{NAME_KEY}|n] | [{FULL_KEY}|f]";
 
-        if (InputHandler.Arguments.Length > 0 && InputHandler.Arguments[0] == "name")
+        private const string NAME_KEY = "name";
+        private const string FULL_KEY = "fullPath";
+
+        public override void Invoke(params string[] args)
         {
-            foreach (var i in files)
+            var files = LocalSaver.GetAllFiles();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            if (files.Length == 0)
             {
-                Console.WriteLine($" => {i[(i.LastIndexOf('\\') + 1)..]}");
+                Console.WriteLine(" => Not files");
+                Console.ResetColor();
+                return;
             }
-            return;
-        }
 
-        foreach (var i in files)
-        {
-            Console.WriteLine($" => {i}");
+            if (args[0] == "name" || args[0] == "n")
+            {
+                foreach (var i in files)
+                {
+                    Console.WriteLine($" => {i[(i.LastIndexOf('\\') + 1)..]}");
+                }
+                Console.ResetColor();
+                return;
+            }
+            if (args[0] == "full" || args[0] == "f")
+            {
+                foreach (var i in files)
+                {
+                    Console.WriteLine($" => {i}");
+                }
+                Console.ResetColor();
+                return;
+            }
+
+            ErrorHandler.ArgumentError(Name, args[0]);
         }
     }
 }

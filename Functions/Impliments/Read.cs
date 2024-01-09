@@ -1,37 +1,39 @@
-﻿namespace CryptoNote;
+﻿using CryptoNote.Savers;
 
-internal class Read : IFunction
+namespace CryptoNote.Functions
 {
-    public string Name => "read";
-    public string ShortName => "r";
-    public string Description => "читает файл";
-    public string Example => "read filename";
-
-    public void Invoke()
+    internal class Read : BaseFunctionWithArgs
     {
-        var args = InputHandler.Arguments;
-        if (args.Length != 1)
-        {
-            ErrorHandler.ArgumentError($"read take one argument: filename");
-            return;
-        }
-        var files = LocalSaver.GetAllFiles();
-        foreach(var file in files )
-        {
-            var name = file[(file.LastIndexOf("\\") + 1)..];
-            
-            if (!name.StartsWith(args[0])) continue;
+        public override string Name => "read";
+        public override string ShortName => "r";
+        public override string Description => "читает файл";
+        public override string Example => $"[{Name}|{ShortName}] [filename]";
 
-            if (LocalSaver.TryLoad(name[..name.LastIndexOf('.')], out string text))
+        public override void Invoke(params string[] args)
+        {
+            var files = LocalSaver.GetAllFiles();
+
+            foreach (var file in files)
             {
-                Console.WriteLine($">>> File: {name}");
-                Console.WriteLine();
-                Console.WriteLine(text);
-                Console.WriteLine();
-                Console.WriteLine(">>> End file");
-                return;
-            }            
+                var name = file[(file.LastIndexOf("\\") + 1)..];
+
+                if (!name.StartsWith(args[0])) continue;
+
+                if (LocalSaver.TryLoad(name[..name.LastIndexOf('.')], out string text))
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($">>> File: {name}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine();
+                    Console.WriteLine(text);
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(">>> End file");
+                    Console.ResetColor();
+                    return;
+                }
+            }
+
         }
-        
     }
 }

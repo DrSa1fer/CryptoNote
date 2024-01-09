@@ -1,24 +1,60 @@
-﻿namespace CryptoNote
+﻿namespace CryptoNote.Functions
 {
-    internal class Help : IFunction
+    internal class Help : BaseFunctionWithoutArgs
     {
-        public string Name => "help";
-        public string ShortName => "h";
-        public string Description => "выводит список команд";
-        public string Example => "help";
+        public override string Name => "help";
+        public override string ShortName => "h";
+        public override string Description => "выводит список команд";
+        public override string Example => $"[{Name}|{ShortName}]";
 
-        private readonly List<IFunction> _list;
-        public Help(List<IFunction> list)
+        private IReadOnlyCollection<BaseFunction>? _collection;
+        
+        public void Inject(IReadOnlyCollection<BaseFunction> collection)
         {
-            _list = list;
+            _collection = collection;
         }
 
-        public void Invoke()
+        public override void Invoke()
         {
-            foreach(var i in _list)
+            if (_collection == null)
             {
-                Console.WriteLine($"{i.Name} or {i.ShortName} => {i.Example} {i.Description}");
+                return;
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.CursorLeft = 0;
+            Console.Write("Name");
+
+            Console.CursorLeft = 10;
+            Console.Write("Short");
+
+            Console.CursorLeft = 18;
+            Console.Write("Description");
+
+            Console.CursorLeft = 48;
+            Console.Write("Example");
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            foreach (var i in _collection)
+            {
+                Console.CursorLeft = 0;                
+                Console.Write($"{i.Name}");
+
+                Console.CursorLeft = 10;
+                Console.Write($"{i.ShortName}");
+                
+                Console.CursorLeft = 18;
+                Console.Write($"{i.Description}");
+
+                Console.CursorLeft = 48;
+                Console.Write($"{i.Example}");
+
+                Console.WriteLine();
+            }
+            Console.ResetColor();
         }
     }
 }

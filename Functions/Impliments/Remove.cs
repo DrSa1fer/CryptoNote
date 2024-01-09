@@ -1,18 +1,20 @@
-﻿namespace CryptoNote;
-internal class Remove : IFunction
-{
-    public string Name => "remove";
-    public string ShortName => "rm";
-    public string Description => "удаляет файл";
-    public string Example => "remove filename";
+﻿using CryptoNote.Savers;
 
-    public void Invoke()
+namespace CryptoNote.Functions
+{
+    internal class Remove : BaseFunctionWithArgs
     {
-        if(InputHandler.Arguments.Length == 1)
+        public override string Name => "remove";
+        public override string ShortName => "rm";
+        public override string Description => "удаляет файл";
+        public override string Example => $"[{Name}|{ShortName}] [filename]";
+
+        public override void Invoke(params string[] args)
         {
-            LocalSaver.Remove(InputHandler.Arguments[0]);
-            return;
+            LocalSaver.Remove(args[0]);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"File removed: {args[0]}");
+            Console.ResetColor();
         }
-        ErrorHandler.ArgumentError($"remove take one argument: filename");
     }
 }
