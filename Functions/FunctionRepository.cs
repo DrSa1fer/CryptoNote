@@ -20,11 +20,11 @@ namespace CryptoNote
             help.Inject(Functions);
         }
 
-        public bool TryGetFunctionWithoutArgs(string name, out BaseFunctionWithoutArgs? func)
+        public bool TryGetFunction(string name, out BaseFunctionWithoutArgs? func)
         {
             return (func = _funcWithoutArgs.Find(x => x.IsEqualByName(name))) != null;
         }
-        public bool TryGetFunctionWithArgs(string name, out BaseFunctionWithArgs? func)
+        public bool TryGetFunction(string name, out BaseFunctionWithArgs? func)
         {
             return (func = _funcWithArgs.Find(x => x.IsEqualByName(name))) != null;
         }
