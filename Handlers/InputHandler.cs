@@ -17,7 +17,7 @@ namespace CryptoNote.Handlers
 
             if (arr.Length == 1)
             {
-                if (_rep.TryGetFunctionWithoutArgs(arr[0], out BaseFunctionWithoutArgs? func))
+                if (_rep.TryGetFunction(arr[0], out BaseFunctionWithoutArgs? func))
                 {
                     func?.Invoke();
                     return;
@@ -25,7 +25,7 @@ namespace CryptoNote.Handlers
             }
             if (arr.Length > 1)
             {
-                if (_rep.TryGetFunctionWithArgs(arr[0], out BaseFunctionWithArgs? func))
+                if (_rep.TryGetFunction(arr[0], out BaseFunctionWithArgs? func))
                 {
                     func?.Invoke(arr[1..]);
                     return;
